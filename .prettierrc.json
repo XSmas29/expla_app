@@ -1,0 +1,9 @@
+{
+  "insertPragma": false,
+  "proseWrap": "preserve",
+  "bracketSameLine": false,
+  "semi": false,
+  "trailingComma": "es5",
+  "arrowParens": "avoid",
+  "jsxSelfClosing": true
+}

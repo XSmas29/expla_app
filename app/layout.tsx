@@ -1,13 +1,13 @@
-import "@/styles/globals.css";
-import { Metadata, Viewport } from "next";
-import { Link } from "@nextui-org/link";
-import clsx from "clsx";
+import "@/styles/globals.css"
+import { Metadata, Viewport } from "next"
+import { Link } from "@nextui-org/link"
+import clsx from "clsx"
 
-import { Providers } from "./providers";
+import { Providers } from "./providers"
 
-import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
-import { Navbar } from "@/components/navbar";
+import { siteConfig } from "@/config/site"
+import { fontSans } from "@/config/fonts"
+import { Navbar } from "@/components/navbar"
 
 export const metadata: Metadata = {
   title: {
@@ -16,29 +16,44 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon/favicon.ico",
   },
-};
+}
 
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head />
+      <head>
+        <link
+          href="/static/favicon-96x96.png"
+          rel="icon"
+          sizes="96x96"
+          type="image/png"
+        />
+        <link href="/static/favicon.svg" rel="icon" type="image/svg+xml" />
+        <link href="/static/favicon.ico" rel="shortcut icon" />
+        <link
+          href="/static/apple-touch-icon.png"
+          rel="apple-touch-icon"
+          sizes="180x180"
+        />
+        <link href="/static/site.webmanifest" rel="manifest" />
+      </head>
       <body
         className={clsx(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
+          fontSans.variable
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
@@ -62,5 +77,5 @@ export default function RootLayout({
         </Providers>
       </body>
     </html>
-  );
+  )
 }
