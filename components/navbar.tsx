@@ -1,23 +1,22 @@
-import {
-  Navbar as NextUINavbar,
-  NavbarContent,
-  NavbarMenu,
-  NavbarBrand,
-  NavbarItem,
-  NavbarMenuItem,
-} from "@nextui-org/navbar"
-import { Link } from "@nextui-org/link"
-import { link as linkStyles } from "@nextui-org/theme"
-import NextLink from "next/link"
-import clsx from "clsx"
 import { Button } from "@nextui-org/button"
-import { button } from "@nextui-org/theme"
+import { Link } from "@nextui-org/link"
+import {
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenu,
+  NavbarMenuItem,
+  Navbar as NextUINavbar,
+} from "@nextui-org/navbar"
+import { button, link as linkStyles } from "@nextui-org/theme"
+import clsx from "clsx"
+import NextLink from "next/link"
 
 import { MyIcon } from "./myIcon"
 
-import { siteConfig } from "@/config/site"
-import { ThemeSwitch } from "@/components/theme-switch"
 import { Logo } from "@/components/icons"
+import { ThemeSwitch } from "@/components/theme-switch"
+import { siteConfig } from "@/config/site"
 
 export const Navbar = () => {
   // const searchInput = (

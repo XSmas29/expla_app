@@ -11,14 +11,14 @@ import tseslint from "typescript-eslint";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  {ignores: ["node_modules", ".next", ".vercel"],},
+  {ignores: ["node_modules", ".next", ".vercel", "next.config.js"],},
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
     languageOptions: { 
       globals: globals.browser, 
       parserOptions: {
         ecmaFeatures: {
-          jsx: true
+          jsx: true,
         },
         ecmaVersion: 12,
         sourceType: "module"
@@ -28,6 +28,10 @@ export default [
     // "plugin:jsx-a11y/recommended",
     // "plugin:@next/next/recommended",
   },
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  pluginImport.flatConfigs.recommended,
+  eslintPluginPrettierRecommended,
   {
     plugins: {
       'jsx-a11y': jsxA11y,
@@ -45,12 +49,6 @@ export default [
       "react-hooks/exhaustive-deps": "off",
       "jsx-a11y/click-events-have-key-events": "warn",
       "jsx-a11y/interactive-supports-focus": "warn",
-      "prettier/prettier": [
-        "error",
-        {
-          "endOfLine": "auto"
-        }
-      ],
       "semi": ["warn", "never"],
       "import/order": [
         "warn",
@@ -75,6 +73,13 @@ export default [
           "newlines-between": "always"
         }
       ],
+      "import/no-unresolved": [
+        "off", 
+        { "caseSensitive": false }
+      ],
+      "import/named": "off",
+      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-unused-expressions": "off",
       "react/self-closing-comp": "error",
       "react/jsx-sort-props": [
         "warn",
@@ -85,15 +90,12 @@ export default [
           "reservedFirst": true
         }
       ],
+      "prettier/prettier": [
+        "warn",
+        {
+          "endOfLine": "auto",
+        }
+      ],
     }
   },
-  pluginJs.configs.recommended,
-  ...tseslint.config({
-    rules: {
-      'no-unused-vars': 'warn',
-    }
-  }),
-  eslintPluginPrettierRecommended,
-  pluginImport.flatConfigs.recommended,
-  
 ];
