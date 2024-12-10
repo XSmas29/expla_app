@@ -1,18 +1,21 @@
-import { Button } from "@nextui-org/button"
-import { Link } from "@nextui-org/link"
+"use client"
+
 import {
+  Button,
+  Link,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
   NavbarMenu,
   NavbarMenuItem,
   Navbar as NextUINavbar,
-} from "@nextui-org/navbar"
+} from "@nextui-org/react"
 import { button, link as linkStyles } from "@nextui-org/theme"
 import clsx from "clsx"
 import NextLink from "next/link"
 
 import { MyIcon } from "./myIcon"
+import { btn } from "./primitives"
 
 import { Logo } from "@/components/icons"
 import { ThemeSwitch } from "@/components/theme-switch"
@@ -80,25 +83,15 @@ export const Navbar = () => {
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
           <Button
-            className={button({
-              color: "primary",
-              variant: "solid",
-              className: "text-primary-900",
-            })}
-          >
-            Sign Up
-          </Button>
-          <Button
-            className={button({
-              color: "primary",
-              variant: "bordered",
-              className: "text-primary-900",
-            })}
+            as={Link}
+            className={btn()}
+            href="/login"
             startContent={
               <MyIcon color="primary-900" icon="solar:login-2-bold-duotone" />
             }
+            variant="shadow"
           >
-            Login
+            Login / Sign up
           </Button>
         </NavbarItem>
       </NavbarContent>

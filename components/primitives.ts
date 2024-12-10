@@ -8,7 +8,7 @@ export const title = tv({
       yellow: "from-[#FF705B] to-[#FFB457]",
       blue: "from-[#5EA2EF] to-[#0072F5]",
       cyan: "from-[#00b7fa] to-[#01cfea]",
-      green: "from-[#6FEE8D] to-[#17c964]",
+      green: "from-[#34d189] to-[#31b59b]",
       pink: "from-[#FF72E1] to-[#F54C7A]",
       foreground: "dark:from-[#FFFFFF] dark:to-[#4B4B4B]",
     },
@@ -19,6 +19,9 @@ export const title = tv({
     },
     fullWidth: {
       true: "w-full block",
+    },
+    fontWeight: {
+      bold: "font-bold",
     },
   },
   defaultVariants: {
@@ -49,5 +52,37 @@ export const subtitle = tv({
   },
   defaultVariants: {
     fullWidth: true,
+  },
+})
+
+export const btn = tv({
+  base: "rounded-md",
+  variants: {
+    color: {
+      primary: "from-[#34d189] to-[#31b59b]",
+    },
+    gradient: {
+      toTop: "bg-gradient-to-t",
+      toTopRight: "bg-gradient-to-tr",
+      toRight: "bg-gradient-to-r",
+      toBottomRight: "bg-gradient-to-br",
+      toBottom: "bg-gradient-to-b",
+      toBottomLeft: "bg-gradient-to-bl",
+      toLeft: "bg-gradient-to-l",
+      toTopLeft: "bg-gradient-to-tl",
+    },
+    fontSize: {
+      sm: "text-xs",
+      md: "text-sm",
+      lg: "text-lg",
+    },
+    fontWeight: {
+      bold: "font-bold",
+    },
+  },
+  defaultVariants: {
+    color: "primary",
+    fontSize: "md",
+    gradient: "toTopRight",
   },
 })
