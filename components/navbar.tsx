@@ -14,10 +14,10 @@ import { button, link as linkStyles } from "@nextui-org/theme"
 import clsx from "clsx"
 import NextLink from "next/link"
 
-import { MyIcon } from "./myIcon"
 import { btn } from "./primitives"
 
 import { Logo } from "@/components/icons"
+import MyIcon from "@/components/myIcon"
 import { ThemeSwitch } from "@/components/theme-switch"
 import { siteConfig } from "@/config/site"
 
@@ -32,7 +32,7 @@ export const Navbar = () => {
   //     endContent={
   //       <Kbd className="hidden lg:inline-block" keys={["command"]}>
   //         K
-  //       </Kbd>
+  //       </Kbd>a
   //     }
   //     labelPlacement="outside"
   //     placeholder="Search..."

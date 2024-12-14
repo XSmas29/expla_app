@@ -1,8 +1,11 @@
+import { title } from "process"
+
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
   name: "Expla",
-  description: "Make beautiful websites regardless of your design experience.",
+  title: "Expla - Expense Planner",
+  description: "Your everyday expense planner for all your needs.",
   navItems: [
     {
       label: "Home",

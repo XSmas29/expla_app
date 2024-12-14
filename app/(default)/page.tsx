@@ -1,7 +1,9 @@
 "use client"
+
 import { Code, Link, Snippet } from "@nextui-org/react"
 import { button } from "@nextui-org/theme"
 import { motion } from "motion/react"
+import { Metadata } from "next"
 
 import { GithubIcon } from "@/components/icons"
 import { subtitle, title } from "@/components/primitives"

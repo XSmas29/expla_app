@@ -9,33 +9,35 @@ import {
   Image,
   Input,
 } from "@nextui-org/react"
-import { GoogleLogin } from "@react-oauth/google"
 import { motion } from "motion/react"
 import NextImage from "next/image"
+import Link from "next/link"
+import { useState } from "react"
 
 import { GoogleIcon } from "@/components/icons"
+import MyIcon from "@/components/myIcon"
 import { btn, title } from "@/components/primitives"
 import useAuth from "@/hooks/useAuth"
 
 export default function Login() {
   const { loginGoogle, loadingLogin } = useAuth()
+  const [isVisible, setIsVisible] = useState(false)
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible)
+  }
 
   return (
     <motion.div
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      initial={{ opacity: 0 }}
-      transition={{ duration: 1 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 50 }}
+      transition={{ duration: 0.4 }}
     >
-      <section className="flex flex-col items-center justify-center gap-4 pb-8  md:py-10">
+      <section className="flex flex-col items-center justify-center gap-4 pb-8 md:py-10">
         <div className="mb-2">
-          <div className={title({ color: "green", size: "sm" })}>Login</div>
+          <div className={title({ size: "sm" })}>Login</div>
         </div>
-        <Card
-          fullWidth
-          isBlurred
-          className="sm:max-w-[420px] border-1 border-gray-200"
-        >
+        <Card fullWidth isBlurred className="sm:max-w-[420px] border-1">
           <CardHeader className="justify-center">
             <Image
               alt="NextUI hero Image"
@@ -51,17 +53,31 @@ export default function Login() {
               <form>
                 <div className="flex flex-col gap-4">
                   <Input
-                    autoComplete="email"
+                    isRequired
+                    autoComplete="hidden"
                     placeholder="Email"
                     size="lg"
                     type="email"
                   />
                   <Input
-                    autoComplete="current-password"
-                    className="input"
+                    isRequired
+                    autoComplete="hidden"
+                    endContent={
+                      <button
+                        className="focus:outline-none"
+                        type="button"
+                        onClick={toggleVisibility}
+                      >
+                        {isVisible ? (
+                          <MyIcon icon="solar:eye-bold" size={24} />
+                        ) : (
+                          <MyIcon icon="solar:eye-closed-bold" size={24} />
+                        )}
+                      </button>
+                    }
                     placeholder="Password"
                     size="lg"
-                    type="password"
+                    type={isVisible ? "text" : "password"}
                   />
                   <Button
                     className={btn({ fontWeight: "bold" })}
@@ -69,6 +85,12 @@ export default function Login() {
                   >
                     Login
                   </Button>
+                  <p className="text-center">
+                    <span>Don't have an account? </span>
+                    <Link className="text-blue-500" href="/register">
+                      Register here
+                    </Link>
+                  </p>
                 </div>
               </form>
               <div className="my-4 text-center items-center grid grid-cols-12 gap-2">
@@ -77,9 +99,9 @@ export default function Login() {
                 <Divider className="col-span-5" />
               </div>
               <Button
-                className="w-full"
+                className="w-full mb-3"
                 isLoading={loadingLogin}
-                size="md"
+                size="lg"
                 startContent={<GoogleIcon size={24} />}
                 variant="bordered"
                 onClick={loginGoogle}

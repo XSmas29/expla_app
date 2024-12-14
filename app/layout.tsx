@@ -4,14 +4,12 @@ import "@/styles/globals.css"
 import { Link } from "@nextui-org/react"
 import { GoogleOAuthProvider } from "@react-oauth/google"
 import clsx from "clsx"
-import { Metadata, Viewport } from "next"
+import { Toaster } from "react-hot-toast"
 
 import { Providers } from "./providers"
 import StoreProvider from "./storeProvider"
 
-import { Navbar } from "@/components/navbar"
 import { fontSans } from "@/config/fonts"
-import { siteConfig } from "@/config/site"
 // export const metadata: Metadata = {
 //   title: {
 //     default: siteConfig.name,
@@ -65,10 +63,7 @@ export default function RootLayout({
           <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
             <StoreProvider>
               <div className="relative flex flex-col h-screen">
-                <Navbar />
-                <main className="container mx-auto max-w-7xl pt-8 px-6 flex-grow">
-                  {children}
-                </main>
+                {children}
                 <footer className="w-full flex items-center justify-center py-3">
                   <Link
                     isExternal
@@ -84,6 +79,7 @@ export default function RootLayout({
             </StoreProvider>
           </Providers>
         </GoogleOAuthProvider>
+        <Toaster />
       </body>
     </html>
   )

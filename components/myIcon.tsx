@@ -1,5 +1,22 @@
 import { Icon } from "@iconify/react"
 
-export const MyIcon = ({ icon, color }: { icon: string; color: string }) => {
-  return <Icon className={`dark:${color} light:${color}`} icon={icon} />
+const MyIcon = ({
+  icon,
+  color,
+  size = 16,
+}: {
+  icon: string
+  color?: string
+  size?: number
+}) => {
+  return (
+    <Icon
+      className={`dark:${color} light:${color}`}
+      height={size}
+      icon={icon}
+      width={size}
+    />
+  )
 }
+
+export default MyIcon
