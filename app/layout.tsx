@@ -4,6 +4,7 @@ import "@/styles/globals.css"
 
 import { GoogleOAuthProvider } from "@react-oauth/google"
 import clsx from "clsx"
+import { Suspense } from "react"
 import { ToastContainer } from "react-toastify"
 
 import { Providers } from "@/app/providers"
@@ -41,38 +42,42 @@ export default function RootLayout({
         />
         <link href="/static/site.webmanifest" rel="manifest" />
       </head>
-      <body
-        className={clsx(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
-        )}
-      >
-        <ToastContainer
-          closeOnClick
-          draggable
-          pauseOnFocusLoss
-          pauseOnHover
-          autoClose={3000}
-          hideProgressBar={true}
-          newestOnTop={false}
-          position="bottom-center"
-          rtl={false}
-          theme="colored"
-        />
-        <GoogleOAuthProvider
-          clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
+      <Suspense>
+        <body
+          className={clsx(
+            "min-h-screen bg-background font-sans antialiased",
+            fontSans.variable
+          )}
         >
-          <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-            <StoreProvider>
-              <div className="relative flex flex-col h-screen">
-                {children}
+          <ToastContainer
+            closeOnClick
+            draggable
+            pauseOnFocusLoss
+            pauseOnHover
+            autoClose={3000}
+            hideProgressBar={true}
+            newestOnTop={false}
+            position="bottom-center"
+            rtl={false}
+            theme="colored"
+          />
+          <GoogleOAuthProvider
+            clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
+          >
+            <Providers
+              themeProps={{ attribute: "class", defaultTheme: "dark" }}
+            >
+              <StoreProvider>
+                <div className="relative flex flex-col h-screen">
+                  {children}
 
-                <Footer />
-              </div>
-            </StoreProvider>
-          </Providers>
-        </GoogleOAuthProvider>
-      </body>
+                  <Footer />
+                </div>
+              </StoreProvider>
+            </Providers>
+          </GoogleOAuthProvider>
+        </body>
+      </Suspense>
     </html>
   )
 }

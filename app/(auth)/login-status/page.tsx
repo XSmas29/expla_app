@@ -2,7 +2,7 @@
 import { Spinner } from "@nextui-org/react"
 import { motion } from "motion/react"
 import { useRouter, useSearchParams } from "next/navigation"
-import { useEffect } from "react"
+import { Suspense, useEffect } from "react"
 import { toast } from "react-toastify"
 
 import { btn, title } from "@/components/primitives"
