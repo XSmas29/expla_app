@@ -1,26 +1,16 @@
 "use client"
 
 import "@/styles/globals.css"
-import { Link } from "@nextui-org/react"
+
 import { GoogleOAuthProvider } from "@react-oauth/google"
 import clsx from "clsx"
-import { Toaster } from "react-hot-toast"
+import { ToastContainer } from "react-toastify"
 
-import { Providers } from "./providers"
-import StoreProvider from "./storeProvider"
-
+import { Providers } from "@/app/providers"
+import StoreProvider from "@/app/storeProvider"
+import { Footer } from "@/components/footer"
 import { fontSans } from "@/config/fonts"
-// export const metadata: Metadata = {
-//   title: {
-//     default: siteConfig.name,
-//     template: `%s - ${siteConfig.name}`,
-//   },
-//   description: siteConfig.description,
-//   icons: {
-//     icon: "/favicon/favicon.ico",
-//   },
-// }
-
+import "react-toastify/dist/ReactToastify.css"
 // export const viewport: Viewport = {
 //   themeColor: [
 //     { media: "(prefers-color-scheme: light)", color: "white" },
@@ -57,6 +47,18 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
+        <ToastContainer
+          closeOnClick
+          draggable
+          pauseOnFocusLoss
+          pauseOnHover
+          autoClose={3000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          position="bottom-center"
+          rtl={false}
+          theme="colored"
+        />
         <GoogleOAuthProvider
           clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
         >
@@ -64,22 +66,12 @@ export default function RootLayout({
             <StoreProvider>
               <div className="relative flex flex-col h-screen">
                 {children}
-                <footer className="w-full flex items-center justify-center py-3">
-                  <Link
-                    isExternal
-                    className="flex items-center gap-1 text-current"
-                    href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
-                    title="nextui.org homepage"
-                  >
-                    <span className="text-default-600">Powered by</span>
-                    <p className="text-primary">NextUI</p>
-                  </Link>
-                </footer>
+
+                <Footer />
               </div>
             </StoreProvider>
           </Providers>
         </GoogleOAuthProvider>
-        <Toaster />
       </body>
     </html>
   )

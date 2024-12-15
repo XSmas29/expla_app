@@ -1,35 +1,45 @@
 "use client"
-
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Divider,
-  Image,
-  Input,
-} from "@nextui-org/react"
-import { GoogleLogin } from "@react-oauth/google"
+import { Spinner } from "@nextui-org/react"
 import { motion } from "motion/react"
-import NextImage from "next/image"
+import { useRouter, useSearchParams } from "next/navigation"
+import { useEffect } from "react"
+import { toast } from "react-toastify"
 
-import { GoogleIcon } from "@/components/icons"
 import { btn, title } from "@/components/primitives"
 import useAuth from "@/hooks/useAuth"
 
 export default function Login() {
-  const { loginGoogle, loadingLogin } = useAuth()
+  const { loadingLogin, setJWTbyGoogle } = useAuth()
+  const searchParams = useSearchParams()
+  const code = searchParams.get("code")
+  const router = useRouter()
+  useEffect(() => {
+    if (code) {
+      setJWTbyGoogle(code)
+        .then(() => {
+          // router.push("/home")
+        })
+        .catch(() => {
+          router.push("/login")
+        })
+    } else {
+      toast.error("Authorization code not found")
+      router.push("/login")
+    }
+  }, [code])
 
   return (
     <motion.div
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 50 }}
-      initial={{ opacity: 0, y: 50 }}
-      transition={{ duration: 0.4 }}
+      animate={{ opacity: 1 }}
+      className="h-full flex flex-col items-center justify-center"
+      exit={{ opacity: 0 }}
+      initial={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
     >
-      <section className="flex flex-col items-center justify-center gap-4 pb-8  md:py-10">
+      <section className="gap-4 pb-8  md:py-1">
         <div className="mb-2">
-          <div className={title({ size: "sm" })}>Login Success</div>
+          {loadingLogin && <Spinner className="self-center" size="lg" />}
+          {/* <div className={title({ size: "sm" })}>Login Success</div> */}
         </div>
       </section>
     </motion.div>

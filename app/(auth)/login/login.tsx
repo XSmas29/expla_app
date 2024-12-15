@@ -33,7 +33,7 @@ export default function Login() {
       initial={{ opacity: 0, y: 50 }}
       transition={{ duration: 0.4 }}
     >
-      <section className="flex flex-col items-center justify-center gap-4 pb-8 md:py-10">
+      <section className="flex flex-col items-center justify-center gap-4 pb-8 md:py-8">
         <div className="mb-2">
           <div className={title({ size: "sm" })}>Login</div>
         </div>
@@ -88,7 +88,7 @@ export default function Login() {
                   <p className="text-center">
                     <span>Don't have an account? </span>
                     <Link className="text-blue-500" href="/register">
-                      Register here
+                      Register
                     </Link>
                   </p>
                 </div>
@@ -104,7 +104,7 @@ export default function Login() {
                 size="lg"
                 startContent={<GoogleIcon size={24} />}
                 variant="bordered"
-                onClick={loginGoogle}
+                onPress={loginGoogle}
               >
                 Login With Google
               </Button>

@@ -12,12 +12,12 @@ import { siteConfig } from "@/config/site"
 export default function Home() {
   return (
     <motion.div
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      initial={{ opacity: 0 }}
-      transition={{ duration: 1 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 50 }}
+      transition={{ duration: 0.4 }}
     >
-      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-16">
         <div className="inline-block max-w-xl text-center justify-center">
           <span className={title()}>Make&nbsp;</span>
           <span className={title({ color: "green" })}>beautiful&nbsp;</span>

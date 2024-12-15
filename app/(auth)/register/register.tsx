@@ -27,7 +27,7 @@ export default function Register() {
       initial={{ opacity: 0, y: 50 }}
       transition={{ duration: 0.4 }}
     >
-      <section className="flex flex-col items-center justify-center gap-4 pb-8  md:py-10">
+      <section className="flex flex-col items-center justify-center gap-4 pb-8  md:py-8">
         <div className="mb-2">
           <div className={title({ size: "sm" })}>Register</div>
         </div>
@@ -63,7 +63,7 @@ export default function Register() {
                   <p className="text-center">
                     <span>Already have an account? </span>
                     <Link className="text-blue-500" href="/login">
-                      Login here
+                      Login
                     </Link>
                   </p>
                 </div>
@@ -79,7 +79,7 @@ export default function Register() {
                 size="lg"
                 startContent={<GoogleIcon size={24} />}
                 variant="bordered"
-                onClick={registerGoogle}
+                onPress={registerGoogle}
               >
                 Register With Google
               </Button>
