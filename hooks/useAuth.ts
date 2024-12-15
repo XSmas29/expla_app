@@ -4,7 +4,7 @@ import cookie from "cookie"
 import { useState } from "react"
 import { toast } from "react-toastify"
 
-import api from "@/lib/axios"
+import { api } from "@/lib/axios"
 
 const useAuth = () => {
   const [loadingLogin, setLoadingLogin] = useState(false)
@@ -48,21 +48,13 @@ const useAuth = () => {
             data: { access_token: string; refresh_token: string }
           }) => {
             // set http-only cookie to store jwt access & refresh token
-            cookie.serialize("access_token", data.access_token, {
-              httpOnly: true,
-            })
-            console.log(
-              cookie.serialize("refresh_token", data.refresh_token, {
-                httpOnly: true,
-              })
-            )
-            console.log(cookie.parse("access_token"))
             toast.success("Login success")
             setLoadingLogin(false)
             resolve(data)
           }
         )
         .catch(err => {
+          console.log(err)
           toast.error("Login failed")
           setLoadingLogin(false)
           reject(err)
@@ -70,20 +62,6 @@ const useAuth = () => {
     })
   }
 
-  const tes = () => {
-    axios
-      .get("http://localhost:8080/api/user", {
-        headers: {
-          Authorization: `Bearer ${cookie.parse("access_token")}`,
-        },
-      })
-      .then(res => {
-        console.log(res.data)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
   return {
     loadingLogin,
     loadingRegister,

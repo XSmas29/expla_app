@@ -9,7 +9,7 @@ import { GithubIcon } from "@/components/icons"
 import { subtitle, title } from "@/components/primitives"
 import { siteConfig } from "@/config/site"
 
-export default function Home() {
+export default function Page() {
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}

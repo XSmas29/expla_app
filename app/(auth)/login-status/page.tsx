@@ -7,8 +7,9 @@ import { toast } from "react-toastify"
 
 import { btn, title } from "@/components/primitives"
 import useAuth from "@/hooks/useAuth"
+import { abortController } from "@/lib/axios"
 
-export default function Login() {
+export default function Page() {
   const { loadingLogin, setJWTbyGoogle } = useAuth()
   const searchParams = useSearchParams()
   const code = searchParams.get("code")
@@ -17,12 +18,15 @@ export default function Login() {
     if (code) {
       setJWTbyGoogle(code)
         .then(() => {
+          abortController.abort()
           router.push("/dashboard")
         })
         .catch(() => {
+          abortController.abort()
           router.push("/login")
         })
     } else {
+      abortController.abort()
       toast.error("Authorization code not found")
       router.push("/login")
     }
