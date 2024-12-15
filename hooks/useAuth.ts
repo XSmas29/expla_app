@@ -47,7 +47,6 @@ const useAuth = () => {
           }: {
             data: { access_token: string; refresh_token: string }
           }) => {
-            // set http-only cookie to store jwt access & refresh token
             toast.success("Login success")
             setLoadingLogin(false)
             resolve(data)
