@@ -17,7 +17,7 @@ export default function Login() {
     if (code) {
       setJWTbyGoogle(code)
         .then(() => {
-          // router.push("/home")
+          router.push("/dashboard")
         })
         .catch(() => {
           router.push("/login")
