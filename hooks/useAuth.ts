@@ -22,7 +22,7 @@ const useAuth = () => {
       setLoadingLogin(false)
     },
     ux_mode: "redirect",
-    redirect_uri: "http://localhost:8080/login-status",
+    redirect_uri: `${process.env.NEXT_PUBLIC_BASE_URL}/login-status`,
     state: "google",
   })
 
